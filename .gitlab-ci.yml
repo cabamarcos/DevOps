@@ -1,0 +1,71 @@
+stages:
+  - code-preparation
+  - tests
+  - deploy
+
+variables:
+  SCRIPTS_DIR: movies/scripts
+
+code-formatting:
+  stage: code-preparation
+  image: python:3.8
+  before_script:
+    - chmod +x ./$SCRIPTS_DIR/configure-dependencies.sh
+    - ./$SCRIPTS_DIR/configure-dependencies.sh
+  script:
+    - chmod +x ./$SCRIPTS_DIR/*.sh
+    - ./$SCRIPTS_DIR/format_code_black.sh
+
+code-quality-checker:
+  stage: code-preparation
+  image: python:3.8
+  before_script:
+    - chmod +x ./$SCRIPTS_DIR/configure-dependencies.sh
+    - ./$SCRIPTS_DIR/configure-dependencies.sh
+  script:
+    - chmod +x ./$SCRIPTS_DIR/*.sh
+    - ./$SCRIPTS_DIR/check_quality_pylint.sh
+    - ./$SCRIPTS_DIR/check_quality_flake8.sh
+    - ./$SCRIPTS_DIR/check_quality_ruff.sh
+
+unit-functional-testing:
+  stage: tests
+  image: python:3.8
+  before_script:
+    - chmod +x ./$SCRIPTS_DIR/configure-dependencies.sh
+    - ./$SCRIPTS_DIR/configure-dependencies.sh
+  script:
+    - chmod +x ./$SCRIPTS_DIR/*.sh
+    - cd movies
+    - ./scripts/run_tests.sh
+
+tests-coverage:
+  stage: tests
+  image: python:3.8
+  before_script:
+    - chmod +x ./$SCRIPTS_DIR/configure-dependencies.sh
+    - ./$SCRIPTS_DIR/configure-dependencies.sh
+  script:
+    - chmod +x ./$SCRIPTS_DIR/*.sh
+    - cd movies
+    - ./scripts/run_tests.sh
+
+other-tests:
+  stage: tests
+  image: python:3.8
+  before_script:
+    - chmod +x ./$SCRIPTS_DIR/configure-dependencies.sh
+    - ./$SCRIPTS_DIR/configure-dependencies.sh
+  script:
+    - chmod +x ./$SCRIPTS_DIR/*.sh
+    - ./$SCRIPTS_DIR/check_quality_radon.sh
+    - ./$SCRIPTS_DIR/check_quality_bandit.sh
+
+deploy-to-heroku:
+  stage: deploy
+  image: python:3.8
+  before_script:
+    - chmod +x ./$SCRIPTS_DIR/configure-dependencies.sh
+    - ./$SCRIPTS_DIR/configure-dependencies.sh
+  script:
+    - echo "Deploying to Heroku"
