@@ -4,7 +4,7 @@ stages:
   - deploy
 
 variables:
-  SCRIPTS_DIR: movies/scripts
+  SCRIPTS_DIR: scripts
 
 code-formatting:
   stage: code-preparation
@@ -36,7 +36,6 @@ unit-functional-testing:
     - ./$SCRIPTS_DIR/configure-dependencies.sh
   script:
     - chmod +x ./$SCRIPTS_DIR/*.sh
-    - cd movies
     - ./scripts/run_tests.sh
 
 tests-coverage:
@@ -47,7 +46,6 @@ tests-coverage:
     - ./$SCRIPTS_DIR/configure-dependencies.sh
   script:
     - chmod +x ./$SCRIPTS_DIR/*.sh
-    - cd movies
     - ./scripts/run_tests.sh
 
 other-tests:
