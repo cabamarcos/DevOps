@@ -26,36 +26,36 @@ jobs:
 
       - name: Install dependencies
         run: |
-          chmod +x ${{ github.workspace }}/scripts/configure-dependencies.sh
-          ./${{ github.workspace }}/scripts/configure-dependencies.sh
+          chmod +x ${{ github.workspace }}/home/runner/work/DevOps/DevOps/scripts/configure-dependencies.sh
+          ./${{ github.workspace }}/home/runner/work/DevOps/DevOps/scripts/configure-dependencies.sh
 
       - name: Code formatting
         run: |
-          chmod +x ${{ github.workspace }}/scripts/*.sh
-          ${{ github.workspace }}/scripts/format_code_black.sh
+          chmod +x ${{ github.workspace }}/home/runner/work/DevOps/DevOps/scripts/*.sh
+          ${{ github.workspace }}/home/runner/work/DevOps/DevOps/scripts/format_code_black.sh
 
       - name: Code quality check
         run: |
           chmod +x $SCRIPTS_DIR/*.sh
-          ${{ github.workspace }}/scripts/check_quality_pylint.sh
-          ${{ github.workspace }}/scripts/check_quality_flake8.sh
-          ${{ github.workspace }}/scripts/check_quality_ruff.sh
+          ${{ github.workspace }}/home/runner/work/DevOps/DevOps/scripts/check_quality_pylint.sh
+          ${{ github.workspace }}/home/runner/work/DevOps/DevOps/scripts/check_quality_flake8.sh
+          ${{ github.workspace }}/home/runner/work/DevOps/DevOps/scripts/check_quality_ruff.sh
 
       - name: Unit and functional testing
         run: |
-          chmod +x ${{ github.workspace }}/scripts/*.sh
-          ${{ github.workspace }}/scripts/run_tests.sh
+          chmod +x ${{ github.workspace }}/home/runner/work/DevOps/DevOps/scripts/*.sh
+          ${{ github.workspace }}/home/runner/work/DevOps/DevOps/scripts/run_tests.sh
 
       - name: Tests coverage
         run: |
-          chmod +x ${{ github.workspace }}/scripts/*.sh
-          ${{ github.workspace }}/scripts/run_tests.sh
+          chmod +x ${{ github.workspace }}/home/runner/work/DevOps/DevOps/scripts/*.sh
+          ${{ github.workspace }}/home/runner/work/DevOps/DevOps/scripts/run_tests.sh
 
       - name: Other tests
         run: |
           chmod +x $SCRIPTS_DIR/*.sh
-          ${{ github.workspace }}/scripts/check_quality_radon.sh
-          ${{ github.workspace }}/scripts/check_quality_bandit.sh
+          ${{ github.workspace }}/home/runner/work/DevOps/DevOps/scripts/check_quality_radon.sh
+          ${{ github.workspace }}/home/runner/work/DevOps/DevOps/scripts/check_quality_bandit.sh
 
       - name: Deploy to Heroku
         run: echo "Deploying to Heroku"
