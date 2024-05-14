@@ -26,36 +26,36 @@ jobs:
 
       - name: Install dependencies
         run: |
-          chmod +x ./home/runner/work/DevOps/DevOps/scripts/configure-dependencies.sh
-          ./home/runner/work/DevOps/DevOps/scripts/configure-dependencies.sh
+          chmod +x /home/runner/work/DevOps/DevOps/scripts/configure-dependencies.sh
+          /home/runner/work/DevOps/DevOps/scripts/configure-dependencies.sh
 
       - name: Code formatting
         run: |
-          chmod +x ./home/runner/work/DevOps/DevOps/scripts/*.sh
-          ./home/runner/work/DevOps/DevOps/scripts/format_code_black.sh
+          chmod +x /home/runner/work/DevOps/DevOps/scripts/*.sh
+          /home/runner/work/DevOps/DevOps/scripts/format_code_black.sh
 
       - name: Code quality check
         run: |
           chmod +x $SCRIPTS_DIR/*.sh
-          ./home/runner/work/DevOps/DevOps/scripts/check_quality_pylint.sh
-          ./home/runner/work/DevOps/DevOps/scripts/check_quality_flake8.sh
-          ./home/runner/work/DevOps/DevOps/scripts/check_quality_ruff.sh
+          /home/runner/work/DevOps/DevOps/scripts/check_quality_pylint.sh
+          /home/runner/work/DevOps/DevOps/scripts/check_quality_flake8.sh
+          /home/runner/work/DevOps/DevOps/scripts/check_quality_ruff.sh
 
       - name: Unit and functional testing
         run: |
-          chmod +x ./home/runner/work/DevOps/DevOps/scripts/*.sh
-          ./home/runner/work/DevOps/DevOps/scripts/run_tests.sh
+          chmod +x /home/runner/work/DevOps/DevOps/scripts/*.sh
+          /home/runner/work/DevOps/DevOps/scripts/run_tests.sh
 
       - name: Tests coverage
         run: |
-          chmod +x ./home/runner/work/DevOps/DevOps/scripts/*.sh
-          ./home/runner/work/DevOps/DevOps/scripts/run_tests.sh
+          chmod +x /home/runner/work/DevOps/DevOps/scripts/*.sh
+          /home/runner/work/DevOps/DevOps/scripts/run_tests.sh
 
       - name: Other tests
         run: |
           chmod +x $SCRIPTS_DIR/*.sh
-          ./home/runner/work/DevOps/DevOps/scripts/check_quality_radon.sh
-          ./home/runner/work/DevOps/DevOps/scripts/check_quality_bandit.sh
+          /home/runner/work/DevOps/DevOps/scripts/check_quality_radon.sh
+          /home/runner/work/DevOps/DevOps/scripts/check_quality_bandit.sh
 
       - name: Deploy to Heroku
         run: echo "Deploying to Heroku"
