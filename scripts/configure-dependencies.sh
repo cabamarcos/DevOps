@@ -1,18 +1,13 @@
-apt-get update -q -y
-apt-get install -y python3-pip
+#!/bin/bash
+
+# Actualizar e instalar dependencias del sistema
+sudo apt-get update -q -y
+sudo apt-get install -y python3-pip python3-dev
+
+# Instalar y actualizar pip
 pip install --upgrade pip
-pip install bandit
-pip install black
-pip install flake8
-pip install radon
-pip install ruff
-pip install pylint
-pip install pytest
-pip install pytest-cov
-pip install isort
-pip install pydantic
-pip install pydantic_core
-pip install jsonschema Flask
-pip install flask-restplus
-pip install requests
-apt install bc
+
+# Instalar dependencias de Python
+pip install -r requirements.txt
+
+echo "Dependencias instaladas correctamente."
