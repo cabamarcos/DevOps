@@ -1,0 +1,12 @@
+bandit
+black
+flake8
+radon
+ruff
+pylint
+pytest
+pytest-cov
+isort
+pydantic
+Flask
+flask-restplus
