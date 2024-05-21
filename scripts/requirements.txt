@@ -8,5 +8,8 @@ pytest
 pytest-cov
 isort
 pydantic
+pydantic_core
 Flask
 flask-restplus
+requests
+bc
