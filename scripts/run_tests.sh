@@ -1,10 +1,4 @@
-#!/bin/bash
-
-SCRIPT_DIR=$(dirname "$(realpath "$0")")
-
-TESTS_DIR="$SCRIPT_DIR/../tests"
-
-export PYTHONPATH=$PYTHONPATH:$SCRIPT_DIR/../
-
-pytest $TEST_DIR
-
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
+exec python -m pytest --cov --cov-report=term-missing "$@"

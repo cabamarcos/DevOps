@@ -1,5 +1,5 @@
-#!/bin/bash
-
-pylint --max-line-length=100 \
-       --disable=C0114,C0115,C0116,R1705,C0411 \
-       ./movies
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
+# Compatibility entrypoint: lint checks are now consolidated in Ruff.
+exec python -m ruff check . "$@"

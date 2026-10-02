@@ -1,15 +1,2 @@
-bandit
-black
-flake8
-radon
-ruff
-pylint
-pytest
-pytest-cov
-isort
-pydantic
-pydantic_core
-Flask
-flask-restplus
-requests
-bc
+# Compatibility with the original install command.
+-r ../requirements-dev.txt

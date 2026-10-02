@@ -1,13 +1,4 @@
-#!/bin/bash
-
-# Actualizar e instalar dependencias del sistema
-sudo apt-get update -q -y
-sudo apt-get install -y python3-pip python3-dev
-
-# Instalar y actualizar pip
-pip install --upgrade pip
-
-# Instalar dependencias de Python
-pip install -r requirements.txt
-
-echo "Dependencias instaladas correctamente."
+#!/usr/bin/env bash
+set -euo pipefail
+cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.."
+python -m pip install -r requirements-dev.txt
