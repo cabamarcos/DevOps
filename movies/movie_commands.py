@@ -1,34 +1,25 @@
+"""Commands shared by the HTTP API and command line utilities."""
+
 from pydantic import BaseModel
-from typing import List
-from movies.movie import Movie
+
+from movies.movie import Movie, MovieDetails
 
 
-class CreateMovieCommand(BaseModel):
-    title: str
-    duration: int
-    category: str
+class CreateMovieCommand(MovieDetails):
+    def execute(self):
+        return self.execute_with_status()[0]
 
-    def execute(self) -> Movie:
-        movie = Movie.get_by_title(self.title)
-        if movie is None:
-            movie = Movie(
-                title=self.title, duration=self.duration, category=self.category
-            ).save()
-            return movie
-        else:
-            return movie
+    def execute_with_status(self):
+        return Movie.get_or_create(self)
 
 
 class ListMovies(BaseModel):
-
-    def execute(self) -> List[Movie]:
-        movies = Movie.list()
-        return movies
+    def execute(self):
+        return Movie.list()
 
 
 class GetMovieById(BaseModel):
     id: str
 
-    def execute(self) -> Movie:
-        movie = Movie.get_by_id(self.id)
-        return movie
+    def execute(self):
+        return Movie.get_by_id(self.id)
