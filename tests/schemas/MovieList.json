@@ -1,6 +1,36 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MovieList",
+  "type": "array",
+  "items": {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "MovieList",
-    "type": "array",
-    "items": {"$ref":  "file:Movie.json"}
+    "title": "Movie",
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string"
+      },
+      "title": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "duration": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "category": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100
+      }
+    },
+    "required": [
+      "id",
+      "title",
+      "duration",
+      "category"
+    ],
+    "additionalProperties": false
   }
+}

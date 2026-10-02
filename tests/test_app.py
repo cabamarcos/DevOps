@@ -8,6 +8,7 @@ from web_app import create_app
 
 PAYLOAD = {"title": "Avatar", "duration": 178, "category": "Action"}
 SCHEMA = json.loads((Path(__file__).parent / "schemas" / "Movie.json").read_text())
+LIST_SCHEMA = json.loads((Path(__file__).parent / "schemas" / "MovieList.json").read_text())
 
 
 def test_full_movie_lifecycle(client):
@@ -18,6 +19,7 @@ def test_full_movie_lifecycle(client):
     movie_id = response.json["id"]
     assert client.get(response.headers["Location"]).json == response.json
     assert client.get("/movies").json == [response.json]
+    validate(client.get("/movies").json, LIST_SCHEMA)
     update = client.put(f"/movies/{movie_id}", json={**PAYLOAD, "duration": 180})
     assert update.status_code == 200 and update.json["duration"] == 180
     assert update.json["id"] == movie_id
